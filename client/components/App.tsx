@@ -43,7 +43,12 @@ const App = () => {
 
   return (
     <>
-      <input type="number" value={year} placeholder="Enter a year"></input>
+      <input
+      type="number" 
+      value={year} 
+      placeholder="Enter a year"
+      onChange={(e) => setYear(e.target.value)} 
+      />
     </>
   )
 }
