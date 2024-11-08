@@ -1,40 +1,54 @@
-import { useState, FormEvent, ChangeEvent  } from 'react'
-import { useMovie } from '../apiClient.ts'
+import { FormEvent, useState } from 'react'
+import { useMovie } from '../apiClient'
 import { useQuery } from '@tanstack/react-query'
-
+import '../Style/Style.css'
 
 const App = () => {
-  const [year, setYear] = useState('')
-  
-  
+  const [movieTitle, setMovieTitle] = useState('')
+  const [searchTitle, setSearchTitle] = useState('')
+
   const {
-    data: Movie,
+    data: movie,
     isError,
     isPending,
-  } = useQuery({ queryKey: ['Movie', year], queryFn: useMovie })
+  } = useQuery({
+    queryKey: ['movie', searchTitle],
+    queryFn: () => useMovie(searchTitle),
+  })
 
-    async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
-    evt.preventDefault()}
+  const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
+    setMovieTitle(e.currentTarget.value)
+  }
 
-    function handleChange(evt: ChangeEvent<HTMLInputElement>) {
-      setYear(evt.currentTarget.value);
-    }
-    
+  const handleSearchClick = () => {
+    setSearchTitle(movieTitle)
+  }
 
   if (isPending) return <p>Grabbing your movie!</p>
 
-  if (isError) return <p>Cannot find your movie soz</p>
-
-  
-
   return (
-    <form onSubmit={handleSubmit} className="form">
+    <form onSubmit={(e) => e.preventDefault()} className="form">
       <input
-      type="number" 
-      value={year} 
-      placeholder="Enter a year"
-      onChange={handleChange} 
+        type="text"
+        value={movieTitle}
+        onChange={handleInputChange}
+        placeholder="Enter movie title"
       />
+      <button type="button" onClick={handleSearchClick}>
+        Search
+      </button>
+
+      {movie && (
+        <div>
+          <h1>{movie.Title}</h1>
+
+          <p>
+            <strong>Year:</strong> {movie.Year}
+          </p>
+        </div>
+      )}
+
+      {isError && <p style={{ color: 'red' }}>Cannot find your movie soz</p>}
     </form>
   )
 }
