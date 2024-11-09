@@ -1,18 +1,21 @@
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
 import request from 'superagent'
 import { Movie } from './models/Movies'
+import dotenv from 'dotenv'
 
-// export async function getMovie(): Promise<string> {
-//   const res = await request.get('/api/v1/movie')
-//   return res.body.title
-// }
+dotenv.config()
 
-export async function useMovie(movieTitle: string): Promise<Movie> {
+// // export async function getMovie(): Promise<string> {
+// //   const res = await request.get('/api/v1/movie')
+// //   return res.body.title
+// // }
+const API_KEY = process.env.OMDB_API_KEY
+export async function fetchMovie(movieTitle: string): Promise<Movie> {
   if (!movieTitle) {
     throw new Error('Movie title is required')
   }
 
-  const res = await request.get('/api/v1/movie').query({ title: movieTitle })
+  const res = await request.get('https://www.omdbapi.com/').query({ t: movieTitle, apiKey: API_KEY })
 
   if (res.body && res.body.Title) {
     return res.body
@@ -30,3 +33,5 @@ export async function useMovie(movieTitle: string): Promise<Movie> {
 //     },
 //   })
 // }
+
+
