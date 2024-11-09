@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { useMovie } from '../apiClient'
+import { fetchMovie } from '../apiClient'
 import { useQuery } from '@tanstack/react-query'
 import '../Style/Style.css'
 
@@ -13,7 +13,7 @@ const App = () => {
     isPending,
   } = useQuery({
     queryKey: ['movie', searchTitle],
-    queryFn: () => useMovie(searchTitle),
+    queryFn: () => fetchMovie(searchTitle),
   })
 
   const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
