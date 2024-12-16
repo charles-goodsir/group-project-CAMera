@@ -1,30 +1,41 @@
-# Boilerplate: React with Express and Vite
+# Movier Finder
 
-This is a starter project that uses Vite to bundle a React app and Express to serve it in production. Express is used in development to serve an API server.
+## Installation
 
-Vite React App: [http://localhost:5173](http://localhost:5173)
-Express API Server: [http://localhost:3000](http://localhost:3000)
+To run this project locally, follow these steps:
 
-Requests to `http://localhost:5173/api` are proxied to `http://localhost:3000/api`.
+```bash
+# Clone the repository
+git clone https://github.com/charles-goodsir/group-project-CAMera
 
-## Setup
+# Navigate to the project directory
+cd <project name> 
 
-### Installation
-
-To use, consider these steps:
-
-- Fork this repo
-- Rename your repo according to the app you're building
-
-```sh
-git clone https://github.com/[your-account]/[your-app].git
-cd [your-app] && npm i
+# Install dependencies
+npm install
 ```
 
-To start the development server with a watcher that rebuilds your code, run `npm run dev`.
+## Usage
 
-Additional components should be placed in `client/components`.
+To start the application, use the following commands:
 
----
+```bash
+# Start the development server
+npm run dev
 
-[Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=boilerplate-react-api)
+# Or build for production
+npm run build
+```
+
+Example of how the application works:
+
+1. Open the app in your browser.
+2. Navigate through the features to explore the functionality.
+3. Interact with dynamic components to see real-time updates.
+
+
+See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
+
+
+You can find the server running on [http://localhost:3000](http://localhost:3000) and the client running on [http://localhost:5173](http://localhost:5173).
+
